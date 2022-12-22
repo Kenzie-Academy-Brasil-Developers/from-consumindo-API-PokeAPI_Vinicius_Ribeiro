@@ -6,7 +6,7 @@ const buttonSearch = document.querySelector(".search--button");
 
 async function getAllPokemons() {
   const pokemons = await fetch(
-    " https://pokeapi.co/api/v2/pokemon?limit=5&offset=0",
+    "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0",
     {
       method: "GET",
       headers: {
@@ -37,17 +37,21 @@ async function getAllPokemonsImg(url) {
   return pokemonImg.sprites.front_default;
 }
 
-function renderImgName(array) {
-  array.forEach(async (pokemon) => {
+function renderImgName(arrayPokemons) {
+  let contPokemons = 0
+
+  arrayPokemons.forEach(async (pokemon) => {
     const img = await getAllPokemonsImg(pokemon.url);
-    renderCards(img, pokemon.name);
+    contPokemons++
+    renderCards(img, `${contPokemons} - ${pokemon.name}`)
   });
 
   loading.style.display = "none";
   cards.style.display = "flex";
 }
-
-renderImgName(pokemons);
+setTimeout(() => {
+  renderImgName(pokemons);
+}, 2000);
 
 function seachRender() {
   buttonSearch.addEventListener("click", async (e) => {
@@ -66,14 +70,14 @@ function seachRender() {
 
     const divCards = document.querySelector(".cards");
 
-    divCards.innerHTML = ""
-    
+    divCards.innerHTML = "";
+
     loading.style.display = "none";
     cards.style.display = "flex";
-    
+
     const img = input.sprites.front_default;
     const name = input.forms[0].name;
-    
+
     renderCards(img, name);
   });
 }
