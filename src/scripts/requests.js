@@ -6,7 +6,7 @@ const buttonSearch = document.querySelector(".search--button");
 
 async function getAllPokemons() {
   const pokemons = await fetch(
-    " https://pokeapi.co/api/v2/pokemon?limit=50&offset=0",
+    " https://pokeapi.co/api/v2/pokemon?limit=5&offset=0",
     {
       method: "GET",
       headers: {

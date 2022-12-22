@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+    .container {
+        width: 60vw;
+    }
+    .search--input {
+        width: 270px;
+        height: 90%;
+
+        padding: 0 0 0 30px;
+    }
+    .search--button {
+        width: 70px;
+        height: 90%;
+    }
+}
